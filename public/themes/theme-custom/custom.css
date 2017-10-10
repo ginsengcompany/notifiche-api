@@ -1,0 +1,175 @@
+.x-body {
+    font-weight: 500;
+}
+.x-treelist-item-expander::after, .x-treelist-item-expander::after{
+    line-height: 64px !important;     
+}
+
+img.user-edit-cell {
+    /*background-image: url(images/custom-icon/user_pencil.png);*/
+    height: 24px;
+    width: 24px;
+}
+
+.red-font{
+    color: #990000;
+    font-weight: bold;
+}
+
+.green-font{
+    color: #009900;
+    font-weight: bold;
+}
+
+.button-top-bar span{
+    font-size: 15px;
+    font-weight: bold;
+}
+a#btn-sono-paziente.x-btn-pressed span{
+    color: #35baf6!important;
+    border-bottom: 1px solid #35baf6;
+}
+a#btn-sono-medico.x-btn-pressed span{
+    color: #35baf6!important;
+    border-bottom: 1px solid #35baf6;
+}
+a#btn-sono-infermiere.x-btn-pressed span{
+    color: #35baf6!important;
+    border-bottom: 1px solid #35baf6;
+}
+a#btn-sono-farmacista.x-btn-pressed span{
+    color: #35baf6!important;
+    border-bottom: 1px solid #35baf6;
+}
+a#btn-sono-struttura.x-btn-pressed span{
+    color: #35baf6!important;
+    border-bottom: 1px solid #35baf6;
+}
+
+.labelGreen{
+    color: #009900;
+    font-weight: bold;
+    margin-top: 8px;
+}
+.etichette{
+    font-size: 12px;
+    margin-top: 8px;
+}
+.success {
+    text-align: center;
+}
+
+.success i {
+    color: #009900;
+    font-size: 25px;
+}
+
+.non-letto {
+    font-weight: bold;
+}
+.x-grid-item-focused .x-grid-cell-inner::before{
+    border: none!important;
+}
+
+ .x-splitter-focus::after{
+    border: none!important;
+}
+
+.dettaglio-messaggio div{
+    color: #02056D
+}
+.x-group-hd-container {
+    overflow: hidden;
+}
+
+.x-grid-group-hd {
+    background: #fff none repeat scroll 0 0;
+    border-color: #d0d0d0;
+    border-style: solid;
+    border-width: 0 0 1px;
+    cursor: pointer;
+    padding: 8px 10px!important;
+}
+.x-grid-group-hd-collapsible .x-grid-group-title::before {
+    color: #919191;
+    content: "";
+    font-family: FontAwesome;
+    font-size: 14px;
+    padding-left: 10px;
+}
+
+.x-grid-group-hd-collapsed .x-grid-group-title::before {
+    color: #919191;
+    content: "";
+    font-family: FontAwesome;
+    font-size: 14px;
+    padding-left: 10px;
+}
+.x-grid-group-title::before {
+    left: 0;
+    position: absolute;
+}
+.x-grid-group-hd-collapsible .x-grid-group-title {
+    padding: 0 0 0 24px;
+}
+.x-grid-item-focused .x-grid-cell-inner::before {
+    border: 1px solid #5fa2dd;
+    bottom: 0;
+    content: "";
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+}
+.x-grid-group-title{
+    font-weight: bold;
+}
+.x-boundlist {
+    background: #fff none repeat scroll 0 0;
+    border-color: #d0d0d0;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.x-boundlist-item {
+    border-color: #fff;
+    border-style: dotted;
+    border-width: 1px;
+    color: #404040;
+    cursor: pointer;
+    font: 13px/30px "Open Sans","Helvetica Neue",helvetica,arial,verdana,sans-serif;
+    padding: 0 10px;
+    position: relative;
+}
+
+.x-boundlist-selected {
+    background: #5fa2dd none repeat scroll 0 0;
+    border-color: #5fa2dd;
+    color: #fff;
+}
+
+
+.x-fieldset-header-text {
+    color: #919191;
+    font: 400 14px/14px "Open Sans","Helvetica Neue",helvetica,arial,verdana,sans-serif!important;
+    padding: 1px 0;
+}
+
+
+.x-form-display-field-default {
+    color: #000099;
+    font: 600 13px/17px "Open Sans","Helvetica Neue",helvetica,arial,verdana,sans-serif;
+    margin-top: 8px;
+    min-height: 32px;
+}
+.cell-center{
+    text-align: center;
+}
+.alert-cell {
+    color: #cc0000;
+    font-size: 18px;
+}
+
+

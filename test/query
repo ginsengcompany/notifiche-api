@@ -1,0 +1,1 @@
+{ dataorainvio: { $gte:ISODate("2016-04-04T00:00:00Z"), $lt: ISODate("2016-04-04T23:59:59Z") }, $or:[{"codiceunitaoperativa": "9999"}, {matricola: "123456"}]}
