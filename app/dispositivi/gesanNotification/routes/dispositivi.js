@@ -20,7 +20,9 @@ router.get('/', function (req, res, next) {
 });
 
 /* PUT users listing. */
+/*
 router.put('/', function (req, res, next) {
+    console.log(req);
     var id = req.params.id;
     var response = {};
     var filtro = {matricola: req.body.matricola, pin: req.body.pin, apikey: null};
@@ -55,6 +57,7 @@ router.put('/', function (req, res, next) {
 //        res.json(response);
 //    });
 });
+*/
 
 router.put('/:id', function (req, res, next) {
     var id = req.params.id;
