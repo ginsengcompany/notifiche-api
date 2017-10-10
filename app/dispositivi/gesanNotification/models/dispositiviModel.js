@@ -12,8 +12,7 @@ var DspositiviSchema = new Schema({
     "nome" : String, 
     "codiceunutaoperativa" : String, 
     "descrizioneunitaoperativa" : String, 
-    "pin" : Number , 
-    "tipo" : String , 
+    "pin" : Number ,
     "apikey" : String
 
 }, {collection: 'dispositivi'});
