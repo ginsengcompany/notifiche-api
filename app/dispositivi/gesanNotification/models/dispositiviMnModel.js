@@ -1,6 +1,9 @@
 // richiama il client di mongo db
-var mongoClient = require('config/config.js');
+var mongoConnection = require('../../../../config/mongoDB');
 
+exports.database = function (){
+    return mongoConnection.get();
+};
 
 /*var Schema = mongoose.Schema;
 

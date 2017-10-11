@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Dispositivi = require('../controllers/dispositiviController');
+var Dispositivi = require('../controllers/dispositiviMnController');
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
