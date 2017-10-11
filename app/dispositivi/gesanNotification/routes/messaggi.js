@@ -1,9 +1,9 @@
 var express = require('express');
 var gcm = require('node-gcm');
 var router = express.Router();
-var Messaggi = require('../controllers/messaggiController');
-var Dispositivi = require('../controllers/dispositiviController');
-var Notifiche = require('../controllers/notificheController');
+var Messaggi = require('../controllers/messaggiMnController');
+var Dispositivi = require('../controllers/dispositiviMnController');
+var Notifiche = require('../controllers/notificheMnController');
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
