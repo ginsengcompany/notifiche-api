@@ -20,7 +20,7 @@ router.get('/', function (req, res, next) {
 });
 
 /* PUT users listing. */
-/*
+
 router.put('/', function (req, res, next) {
     console.log(req);
     var id = req.params.id;
@@ -57,7 +57,7 @@ router.put('/', function (req, res, next) {
 //        res.json(response);
 //    });
 });
-*/
+
 
 router.put('/:id', function (req, res, next) {
     var id = req.params.id;
