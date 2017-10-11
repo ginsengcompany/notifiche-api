@@ -22,8 +22,6 @@ var conn = mongoDB.connect(function (err) {
     if (err) {
       console.log('Unable to connect to Mongo.');
     }
-    else
-      console.log(mongoDB.get());
 });
 //var conn1 = postgres(app);
 

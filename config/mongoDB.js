@@ -14,7 +14,7 @@ exports.connect = function (done) {
         if (err)
             return done(err);
         state.db = db;
-        console.log('Connessione riuscita')
+        console.log('Connessione riuscita');
         done();
     })
 }
