@@ -8,7 +8,8 @@ var httpProxy = require('http-proxy');
 
 var proxy = new httpProxy.RoutingProxy();
 
-var mongoose = require("./config/mongoose");
+//var mongoose = require("./config/mongoose");
+var mongoDB = require("./config/mongoDB");
 //var postgres = require("./config/postgres");
 var routes = require('./routes/index');
 var struttura = require('./app/dispositivi/gesanNotification/routes/struttura');
@@ -16,7 +17,14 @@ var messaggi = require('./app/dispositivi/gesanNotification/routes/messaggi');
 var dispositivi = require('./app/dispositivi/gesanNotification/routes/dispositivi');
 var notifiche = require('./app/dispositivi/gesanNotification/routes/notifiche');
 
-var conn = mongoose(app);
+//var conn = mongoose(app);
+var conn = mongoDB.connect(function (err) {
+    if (err) {
+      console.log('Unable to connect to Mongo.');
+    }
+    else
+      console.log(mongoDB.get());
+});
 //var conn1 = postgres(app);
 
 var app = express();
