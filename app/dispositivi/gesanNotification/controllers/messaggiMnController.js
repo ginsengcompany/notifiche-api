@@ -7,7 +7,7 @@ messaggi.getMessaggi = function (filtro, callback) {
 //    var a = {"dataorainvio": {"$gte": new Date('2016-03-25 00:00:00'), "$lt": new Date('2016-03-25 23:59:50')}};
 
     var collection = model.database().collection('messaggi');
-    collection.find(filtro, function (err, messaggi) {
+    collection.find(filtro).toArray(function (err, messaggi) {
         if (err)
             return callback(err);
         if (messaggi != null) {

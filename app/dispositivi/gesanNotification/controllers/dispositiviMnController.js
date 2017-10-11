@@ -3,7 +3,7 @@ var model = require('../models/dispositiviMnModel');
 
 dispositivi.getDispositivo = function (filtro, callback) {
     var collection = model.database().collection('dispositivi');
-    collection.find(filtro, function (err, dispositivo) {
+    collection.find(filtro).toArray(function (err, dispositivo) {
         if (err)
             return callback(err);
         if (dispositivo != null) {
