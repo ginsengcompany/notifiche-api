@@ -20,7 +20,6 @@ router.get('/', function (req, res, next) {
 });
 
 /* PUT users listing. */
-
 router.put('/', function (req, res, next) {
     console.log(req);
     var id = req.params.id;
@@ -47,24 +46,12 @@ router.put('/', function (req, res, next) {
             });
         }
     });
-//    messaggio.dataLettura = new Date();
-//    Dispositivi.update(id, messaggio, function (err, data) {
-//        if (err) {
-//            response = {"error": true, "message": err};
-//        } else {
-//            response = {"error": false, "message": data};
-//        }
-//        res.json(response);
-//    });
 });
-
 
 router.put('/:id', function (req, res, next) {
     var id = req.params.id;
     var response = {};
     var dispositivo = req.body;
-//    var response = {"error": false, "data": dispositivo};
-//    res.json(response);
     Dispositivi.update(id, dispositivo, function (err, data) {
         if (err) {
             response = {"error": true, "message": err};

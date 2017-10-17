@@ -13,18 +13,18 @@ router.get('/', function (req, res, next) {
     if (data === 'Invalid Date') {
         //filtro = {"dataorainvio": {"$gte": new Date(params.dataorainvio + ' 00:00:00'), "$lt": new Date(params.dataorainvio + ' 23:59:50')}};
     } else {
-        if (params.codiceunitaoperativa !== undefined && params.matricola !== undefined) {
+        if (params.codiceunitaoperativa !== "null" && params.matricola !== "null") {
             filtro = {
-                "dataorainvio": {"$gte": new Date(params.dataorainvio + ' 00:00:00'), "$lt": new Date(params.dataorainvio + ' 23:59:50')},
+                "dataorainvio": {"$gte": new Date(params.dataorainvio + ' 00:00:00.000Z'), "$lt": new Date(params.dataorainvio + ' 23:59:59.000Z')},
                 $or: [{"codiceunitaoperativa": params.codiceunitaoperativa}, {matricola: params.matricola}]
             };
-        } else if (params.codiceunitaoperativa !== undefined) {
-            filtro = {"dataorainvio": {"$gte": new Date(params.dataorainvio + ' 00:00:00'), "$lt": new Date(params.dataorainvio + ' 23:59:50')}, codiceunitaoperativa: params.codiceunitaoperativa};
+        } else if (params.codiceunitaoperativa !== "null") {
+            filtro = {"dataorainvio": {"$gte": new Date(params.dataorainvio + ' 00:00:00.000Z'), "$lt": new Date(params.dataorainvio + ' 23:59:59.000Z')}, codiceunitaoperativa: params.codiceunitaoperativa};
         } else if (params.destinatariomatricola !== undefined) {
             //filtro = {"dataorainvio": {"$gte": new Date(params.dataorainvio + ' 00:00:00'), "$lt": new Date(params.dataorainvio + ' 23:59:50')}, destinatariomatricola: params.destinatariomatricola};
             filtro = {destinatariomatricola: params.destinatariomatricola};
         } else {
-            filtro = {"dataorainvio": {"$gte": new Date(params.dataorainvio + ' 00:00:00'), "$lt": new Date(params.dataorainvio + ' 23:59:50')}};
+            filtro = {"dataorainvio": {"$gte": new Date(params.dataorainvio + ' 00:00:00.000Z'), "$lt": new Date(params.dataorainvio + ' 23:59:59.000Z')}};
         }
     }
     Messaggi.getMessaggi(filtro, function (error, messaggi) {
@@ -62,7 +62,7 @@ router.put('/:id/notificato', function (req, res, next) {
             response = {"error": false, "message": data};
         }
         Notifiche.deleteNotifica(id, function (err,data) {
-            
+
         });
         res.json(response);
     });
