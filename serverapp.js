@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var httpProxy = require('http-proxy');
+var now = require('moment');
 
 var proxy = new httpProxy.RoutingProxy();
 
@@ -12,10 +13,12 @@ var proxy = new httpProxy.RoutingProxy();
 var mongoDB = require("./config/mongoDB");
 //var postgres = require("./config/postgres");
 var routes = require('./routes/index');
-var struttura = require('./app/dispositivi/gesanNotification/routes/struttura');
-var messaggi = require('./app/dispositivi/gesanNotification/routes/messaggi');
-var dispositivi = require('./app/dispositivi/gesanNotification/routes/dispositivi');
-var notifiche = require('./app/dispositivi/gesanNotification/routes/notifiche');
+var struttura = require('./app/dispositivi/routes/struttura');
+var messaggi = require('./app/dispositivi/routes/messaggi');
+var dispositivi = require('./app/dispositivi/routes/dispositivi');
+var notifiche = require('./app/dispositivi/routes/notifiche');
+var login = require('./app/dispositivi/login/routes/login');
+var users = require('./app/dispositivi/login/routes/users');
 
 //var conn = mongoose(app);
 var conn = mongoDB.connect(function (err) {
@@ -26,6 +29,7 @@ var conn = mongoDB.connect(function (err) {
 //var conn1 = postgres(app);
 
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -55,6 +59,9 @@ app.use('/struttura', struttura);
 app.use('/messaggi', messaggi);
 app.use('/dispositivi', dispositivi);
 app.use('/notifiche', notifiche);
+app.use('/token', login);
+app.use('/validate', login);
+app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -86,6 +93,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;

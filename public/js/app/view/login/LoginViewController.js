@@ -31,7 +31,7 @@ Ext.define('AdvaSoftLogin.view.login.LoginViewController', {
         var redirectUri = refs.redirectUri;
 
         Ext.Ajax.request({
-            url: 'rest/token',
+            url: '/token',
             method: 'POST',
             headers: {
                 //'Content-Type': 'application/json',
@@ -41,7 +41,18 @@ Ext.define('AdvaSoftLogin.view.login.LoginViewController', {
             params: {'grant_type':'client_credentials', 'client_id':refs.txtUsername.getValue(), 'client_secret':refs.txtPassword.getValue()},
             success: function (response) {
                 var obj = Ext.decode(response.responseText);
-                me.validate(obj);
+                if (obj.data === null) {
+                    Ext.MessageBox.show({
+                        title: "PubbliGest Cloud",
+                        msg: 'Username e/o Password non corretti',
+                        buttons: Ext.MessageBox.OK,
+                        animEl: 'mb4',
+                        icon: Ext.MessageBox.ERROR
+                    });
+                }
+                else{
+                    me.validate(obj);
+                }
             },
             failure: function (response) {
                 if (response.status === 401) {
@@ -71,7 +82,7 @@ Ext.define('AdvaSoftLogin.view.login.LoginViewController', {
         var redirectUri = refs.redirectUri;        
         var encodedToken = "Bearer " + oauth.access_token;
         Ext.Ajax.request({
-            url: 'rest/validate',
+            url: '/validate',
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

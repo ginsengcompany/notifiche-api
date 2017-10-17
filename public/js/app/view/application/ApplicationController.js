@@ -196,7 +196,7 @@ Ext.define('AdvaSoftLogin.view.application.ApplicationController', {
         var encodedToken = "Bearer " + me.authToken;
         //me.setCurrentView('dashboard');
         Ext.Ajax.request({
-            url: 'rest/users/' + me.username,
+            url: 'users/' + me.username,
             method: 'GET',
             disableCaching: false,
             headers: {
