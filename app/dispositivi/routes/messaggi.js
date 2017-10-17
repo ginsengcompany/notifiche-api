@@ -25,7 +25,7 @@ router.get('/', function (req, res, next) {
             filtro = {destinatariomatricola: params.destinatariomatricola};
         } else {
             filtro = {"dataorainvio": {"$gte": new Date(params.dataorainvio + ' 00:00:00.000Z'), "$lt": new Date(params.dataorainvio + ' 23:59:59.000Z')}};
-}
+        }
     }
     Messaggi.getMessaggi(filtro, function (error, messaggi) {
         response = {"error": false, "data": messaggi};
@@ -62,7 +62,7 @@ router.put('/:id/notificato', function (req, res, next) {
             response = {"error": false, "message": data};
         }
         Notifiche.deleteNotifica(id, function (err,data) {
-            
+
         });
         res.json(response);
     });

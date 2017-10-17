@@ -12,10 +12,10 @@ var proxy = new httpProxy.RoutingProxy();
 var mongoDB = require("./config/mongoDB");
 //var postgres = require("./config/postgres");
 var routes = require('./routes/index');
-var struttura = require('./app/dispositivi/gesanNotification/routes/struttura');
-var messaggi = require('./app/dispositivi/gesanNotification/routes/messaggi');
-var dispositivi = require('./app/dispositivi/gesanNotification/routes/dispositivi');
-var notifiche = require('./app/dispositivi/gesanNotification/routes/notifiche');
+var struttura = require('./app/dispositivi/routes/struttura');
+var messaggi = require('./app/dispositivi/routes/messaggi');
+var dispositivi = require('./app/dispositivi/routes/dispositivi');
+var notifiche = require('./app/dispositivi/routes/notifiche');
 
 //var conn = mongoose(app);
 var conn = mongoDB.connect(function (err) {

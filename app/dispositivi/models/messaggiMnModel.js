@@ -1,11 +1,14 @@
-var messaggi = module.exports;
-var model = require('../models/messaggiMnModel');
-var objectAssign = require('object-assign');
+var mongoConnection = require('../../../config/mongoDB');
+var messaggiModel = module.exports;
 
-messaggi.getMessaggi = function (filtro, callback) {
-//    var a = {"dataorainvio": {"$gte": new Date(2012, 7, 14), "$lt": new Date(2012, 7, 15)}}
-//    var a = {"dataorainvio": {"$gte": new Date('2016-03-25 00:00:00'), "$lt": new Date('2016-03-25 23:59:50')}};
-    var collection = model.database().collection('messaggi');
+messaggiModel.database = function (){
+    return mongoConnection.get();
+};
+
+messaggiModel.getMessaggi = function (filtro, callback) {
+    //    var a = {"dataorainvio": {"$gte": new Date(2012, 7, 14), "$lt": new Date(2012, 7, 15)}}
+    //    var a = {"dataorainvio": {"$gte": new Date('2016-03-25 00:00:00'), "$lt": new Date('2016-03-25 23:59:50')}};
+    var collection = messaggiModel.database().collection('messaggi');
     collection.find(filtro).toArray(function (err, messaggi) {
         if (err)
             return callback(err);
@@ -14,16 +17,15 @@ messaggi.getMessaggi = function (filtro, callback) {
         }
         callback(null, messaggi);
     });
-
 };
 
-messaggi.inserisciMessaggio = function (messaggio, callback) {
-    var collection = model.database().collection('messaggi');
+messaggiModel.inserisciMessaggio = function (messaggio, callback) {
+    var collection = messaggiModel.database().collection('messaggi');
     collection.insertOne(messaggio,callback);
 };
 
-messaggi.updateStato = function (id, stato, callback) {
-    var collection = model.database().collection('messaggi');
+messaggiModel.updateStato = function (id, stato, callback) {
+    var collection = messaggiModel.database().collection('messaggi');
     collection.find({_id: id}, function (err, messaggio) {
         if (err)
             return callback(err);
@@ -35,7 +37,6 @@ messaggi.updateStato = function (id, stato, callback) {
                     theArray[index] = objectAssign(entry, stato);
                 }
             });
-
             if(!esiste){
                 messaggio.stato.push(stato);
             }
@@ -53,8 +54,6 @@ messaggi.updateStato = function (id, stato, callback) {
                     callback(null, messaggio);
                 });
             }
-
         });
     });
-
-};
+}

@@ -1,8 +1,13 @@
-var dispositivi = module.exports;
-var model = require('../models/dispositiviMnModel');
+// richiama il client di mongo db
+var mongoConnection = require('../../../config/mongoDB');
+var dispositiviModel = module.exports;
 
-dispositivi.getDispositivo = function (filtro, callback) {
-    var collection = model.database().collection('dispositivi');
+dispositiviModel.database = function (){
+    return mongoConnection.get();
+};
+
+dispositiviModel.getDispositivo = function (filtro, callback) {
+    var collection = dispositiviModel.database().collection('dispositivi');
     collection.find(filtro).toArray(function (err, dispositivo) {
         if (err)
             return callback(err);
@@ -12,8 +17,8 @@ dispositivi.getDispositivo = function (filtro, callback) {
     });
 };
 
-dispositivi.update = function (id, dispositivo, callback) {
-    var collection = model.database().collection('dispositivi');
+dispositiviModel.update = function (id, dispositivo, callback) {
+    var collection = dispositiviModel.database().collection('dispositivi');
     collection.update({_id: id}, dispositivo, {upsert: true}, function (error, element) {
         if (error) {
             callback(error, dispositivo);
@@ -21,10 +26,8 @@ dispositivi.update = function (id, dispositivo, callback) {
             collection.findOne({_id: id}, function (err, dispositivo) {
                 if (err)
                     return callback(err);
-
                 callback(null, dispositivo);
             });
         }
     });
-};
-
+}
