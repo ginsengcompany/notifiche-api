@@ -1,4 +1,4 @@
-var mongoConnection = require('../../../../config/mongoDB');
+var mongoConnection = require('../../../config/mongoDB');
 var loginmodel = module.exports;
 
 loginmodel.databaseMongo = function (){

@@ -17,11 +17,8 @@ var struttura = require('./app/dispositivi/routes/struttura');
 var messaggi = require('./app/dispositivi/routes/messaggi');
 var dispositivi = require('./app/dispositivi/routes/dispositivi');
 var notifiche = require('./app/dispositivi/routes/notifiche');
-<<<<<<< HEAD
-var login = require('./app/dispositivi/login/routes/login');
-var users = require('./app/dispositivi/login/routes/users');
-=======
->>>>>>> refs/remotes/origin/master
+var login = require('./app/login/routes/login');
+var users = require('./app/login/routes/users');
 
 //var conn = mongoose(app);
 var conn = mongoDB.connect(function (err) {
