@@ -31,10 +31,10 @@ Ext.define('AdvaSoftLogin.store.Utenti', {
             proxy: {
                 type: 'rest',
                 api: {
-                    create: 'rest/users',
-                    read: 'rest/users',
-                    update: 'rest/users',
-                    destroy: 'rest/users'
+                    create: 'users',
+                    read: 'users',
+                    update: 'users',
+                    destroy: 'users'
                 },
                 actionMethods: {
                     create: 'POST',

@@ -5,6 +5,16 @@ usersmodel.databaseMongo = function (){
     return mongoConnection.get();
 };
 
+usersmodel.getLista = function (filtro, callback) {
+    var collection_pub_utenti = usersmodel.databaseMongo().collection('pub_utenti');
+    collection_pub_utenti.find(filtro).toArray(function (errore, lista) {
+        if (errore)
+            return callback(errore);
+        else
+        callback(null, lista);
+    });
+};
+
 usersmodel.getUser = function (filtro, callback) {
     var collection_pub_utenti = usersmodel.databaseMongo().collection('pub_utenti');
     collection_pub_utenti.findOne(filtro,function (err, utente) {

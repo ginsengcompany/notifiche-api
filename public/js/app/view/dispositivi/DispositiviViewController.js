@@ -17,9 +17,9 @@ Ext.define('AdvaSoftLogin.view.dispositivi.DispositiviViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.dispositividispositivi',
     onAttivaDispositivo: function (view, rowIndex, colIndex, item, e, record, row) {
-        var id = record.get('id');
+        var id = record.data._id;
         Ext.Ajax.request({
-            url: 'rest/dispositivi/attivazione/' + id,
+            url: 'dispositivo/attivazione/' + id,
             method: 'PUT',
             disableCaching: false,
             headers: {

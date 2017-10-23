@@ -30,10 +30,10 @@ Ext.define('AdvaSoftLogin.store.Dispositivi', {
             proxy: {
                 type: 'rest',
                 api: {
-                    create: 'rest/dispositivi',
-                    read: 'rest/dispositivi',
-                    update: 'rest/dispositivi',
-                    destroy: 'rest/dispositivi'
+                    create: 'dispositivo',
+                    read: 'dispositivo',
+                    update: 'dispositivo',
+                    destroy: 'dispositivo'
                 },
                 noCache: false
             }

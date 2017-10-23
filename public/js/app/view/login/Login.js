@@ -22,7 +22,7 @@ Ext.define('AdvaSoftLogin.view.login.Login', {
     },
     initComponent: function () {
         var me = this;
-        this.addCls('user-login-register-container');
+        this.addCls('user-server-register-container');
         me.txtUsername = Ext.create('Ext.form.field.Text', {
             xtype: 'textfield',
             reference: 'txtUsername',
@@ -63,7 +63,7 @@ Ext.define('AdvaSoftLogin.view.login.Login', {
                 defaultButton: 'loginButton',
                 autoComplete: true,
                 bodyPadding: '20 20',
-                cls: 'auth-dialog-login',
+                cls: 'auth-dialog-server',
                 header: false,
                 width: 415,
                 refs: {redirectUri: me.redirectUri},

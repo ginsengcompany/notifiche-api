@@ -30,10 +30,10 @@ Ext.define('AdvaSoftLogin.store.Sessioni', {
             proxy: {
                 type: 'rest',
                 api: {
-                    create: 'rest/sessioni',
-                    read: 'rest/sessioni',
-                    update: 'rest/sessioni',
-                    destroy: 'rest/sessioni'
+                    create: 'sessioni',
+                    read: 'sessioni',
+                    update: 'sessioni',
+                    destroy: 'sessioni'
                 },
                 noCache: false
             }

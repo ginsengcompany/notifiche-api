@@ -17,8 +17,9 @@ var struttura = require('./app/dispositivi/routes/struttura');
 var messaggi = require('./app/dispositivi/routes/messaggi');
 var dispositivi = require('./app/dispositivi/routes/dispositivi');
 var notifiche = require('./app/dispositivi/routes/notifiche');
-var login = require('./app/login/routes/login');
-var users = require('./app/login/routes/users');
+var login = require('./app/server/routes/login');
+var users = require('./app/server/routes/users');
+var dispositivo = require('./app/server/routes/dispositivo');
 
 //var conn = mongoose(app);
 var conn = mongoDB.connect(function (err) {
@@ -44,7 +45,7 @@ app.use(cookieParser());
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 //
-//app.all('/login/*', function (req, res) {
+//app.all('/server/*', function (req, res) {
 //    
 //    var forwardPath = '/';
 //    req.url = forwardPath + req.url.split('/').slice(2).join('/'); // rimuove '/webhospital/';
@@ -62,6 +63,7 @@ app.use('/notifiche', notifiche);
 app.use('/token', login);
 app.use('/validate', login);
 app.use('/users', users);
+app.use('/dispositivo', dispositivo);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

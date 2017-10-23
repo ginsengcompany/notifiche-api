@@ -105,7 +105,7 @@ Ext.define('AdvaSoftLogin.view.application.ApplicationController', {
         //console.log(me.routeId);
         if (hashTag === 'login') {
             var redirect_uri = "http://" + window.location.host + window.location.pathname;
-            window.location = "login/index.html?redirect_uri=" + redirect_uri;//"http://localhost:3001/index.html?redirect_uri=" + redirect_uri;
+            window.location = "server/index.html?redirect_uri=" + redirect_uri;//"http://localhost:3001/index.html?redirect_uri=" + redirect_uri;
         } else {
             me.currentView = Ext.create('AdvaSoftLogin.' + (view || 'pages.views.Error404Window'), {hideMode: 'offsets', routeId: hashTag, authToken: me.authToken, utente: me.utente});
 

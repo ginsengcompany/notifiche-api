@@ -43,10 +43,10 @@ Ext.define('AdvaSoftLogin.store.application.NavigationTree', {
             }         
 //            {
 //                text:   'Login',
-//                view:   'view.login.LoginView',
+//                view:   'view.server.LoginView',
 //                iconCls: 'right-icon x-fa fa-send ',
 //                leaf:   true,
-//                routeId: 'login'
+//                routeId: 'server'
 //
 //            },            
 //            {
@@ -113,7 +113,7 @@ Ext.define('AdvaSoftLogin.store.application.NavigationTree', {
 //                        view: 'authentication.Login',
 //                        leaf: true,
 //                        iconCls: 'x-fa fa-check',
-//                        routeId:'authentication.login'
+//                        routeId:'authentication.server'
 //                    },
 //                    {
 //                        text: 'Register',
