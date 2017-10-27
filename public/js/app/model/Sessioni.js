@@ -20,11 +20,11 @@ Ext.define('AdvaSoftLogin.model.Sessioni', {
         'Ext.data.field.Date'
     ],
 
-    idProperty: 'accessToken',
+    idProperty: 'access_token',
 
     fields: [
         {
-            name: 'accessToken',
+            name: 'access_token',
             persist: false
         },
         {
@@ -35,11 +35,11 @@ Ext.define('AdvaSoftLogin.model.Sessioni', {
         },
         {
             type: 'date',
-            name: 'expiresToken',
+            name: 'expires_token',
             dateFormat: 'time'
         },
         {
-            name: 'sessionType'
+            name: 'session_type'
         }
     ]
 });

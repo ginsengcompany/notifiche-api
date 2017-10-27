@@ -24,7 +24,8 @@ Ext.define('AdvaSoftLogin.view.dispositivi.DispositiviViewController', {
             disableCaching: false,
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + AdvaSoftLogin.app.authToken
+                'Authorization': 'Bearer ' + AdvaSoftLogin.app.authToken,
+                'data': record.data.impronta
             },
             success: function (response) {
                 var obj = Ext.decode(response.responseText);

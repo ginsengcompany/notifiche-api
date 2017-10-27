@@ -20,6 +20,8 @@ var notifiche = require('./app/dispositivi/routes/notifiche');
 var login = require('./app/server/routes/login');
 var users = require('./app/server/routes/users');
 var dispositivo = require('./app/server/routes/dispositivo');
+var sessioni = require('./app/server/routes/sessioni');
+var logout = require('./app/server/routes/logout');
 
 //var conn = mongoose(app);
 var conn = mongoDB.connect(function (err) {
@@ -64,6 +66,8 @@ app.use('/token', login);
 app.use('/validate', login);
 app.use('/users', users);
 app.use('/dispositivo', dispositivo);
+app.use('/sessioni',sessioni);
+app.use('/logout',logout);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

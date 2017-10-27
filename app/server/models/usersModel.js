@@ -25,3 +25,18 @@ usersmodel.getUser = function (filtro, callback) {
         callback(null, utente);
     });
 };
+
+usersmodel.updateUtente = function (myquery, newvalue ,callback) {
+    var collection_pub_utenti = usersmodel.databaseMongo().collection('pub_utenti');
+    collection_pub_utenti.updateOne(myquery, newvalue ,function (errore, lista) {
+        if (errore)
+            return callback(errore);
+        else
+            callback(null, lista);
+    });
+};
+
+usersmodel.inserisciUtente = function(utente, callback){
+    var collection_pub_utenti = usersmodel.databaseMongo().collection('pub_utenti');
+    collection_pub_utenti.insertOne(utente,callback);
+};

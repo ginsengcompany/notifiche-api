@@ -246,7 +246,7 @@ Ext.define('AdvaSoftLogin.view.application.ApplicationController', {
                 'Authorization': encodedToken
             },
             success: function (response) {
-                //window.location = 'index.html';
+                window.location = 'index.html';
             },
             failure: function (response) {
                 //window.location = 'index.html';

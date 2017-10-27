@@ -18,7 +18,240 @@ Ext.define('AdvaSoftLogin.view.utenti.UtentiViewController', {
     alias: 'controller.utentiutenti',
 
     onEditUtente: function(view, rowIndex, colIndex, item, e, record, row) {
-        console.log("OK");
+
+        var cognome = view.getStore().getAt(rowIndex).data.lastname;
+        var nome = view.getStore().getAt(rowIndex).data.firstname;
+        var username = view.getStore().getAt(rowIndex).data.username;
+        var email = view.getStore().getAt(rowIndex).data.email;
+        var id = view.getStore().getAt(rowIndex).data._id;
+
+        Ext.create('Ext.window.Window', {
+            title: 'Modifica Utente',
+            height: 360,
+            width: "60%",
+            layout: 'fit',
+            items: [{  // the form is an item of the window
+                id: 'admin-win',
+                width: 2000,
+                height: 2000,
+                //iconCls: 'icon-grid',
+                animCollapse: false,
+                constrainHeader: true,
+                xtype: 'form',
+                bodyPadding: 15,
+                url: '/users/updateUtente/'+id,
+                method: 'PUT',
+                disableCaching: false,
+                items: [{
+
+                        xtype: 'textfield',
+                        fieldLabel : 'Cognome',
+                        value        : cognome,
+                        name        : 'cognome',
+                        allowBlank: false
+                    },
+                    {
+                        xtype: 'textfield',
+                        fieldLabel : 'Nome',
+                        value        : nome,
+                        name        : 'nome',
+                        allowBlank: false
+                    },
+                    {
+                        xtype: 'textfield',
+                        fieldLabel : 'Username',
+                        value        : username,
+                        name        : 'username',
+                        allowBlank: false
+                    },
+                    {
+                        xtype: 'textfield',
+                        fieldLabel : 'E-mail',
+                        value        : email,
+                        name        : 'email',
+                        allowBlank: false
+                }],
+                buttons: [{
+                    text: 'Salva',
+                    handler: function() {
+                        var form = this.up('form').getForm();
+                        if (form.isValid()) {
+                            form.submit({
+                                success: function(form, action) {
+                                    Ext.Msg.alert('Successo', action.result.message);
+                                    var store = AdvaSoftLogin.app.getStore("Utenti");
+                                    store.load();
+                                },
+                                failure: function(form, action) {
+                                    if(action.result.nModified===0){
+                                        Ext.Msg.alert('Errore', 'Nessuna Modifica Effettuata');
+                                        var store = AdvaSoftLogin.app.getStore("Utenti");
+                                        store.load();
+                                    }
+                                    else if(action.result.nModified===1){
+                                        Ext.Msg.alert('Successo', 'Modifica Effettuata');
+                                        var store = AdvaSoftLogin.app.getStore("Utenti");
+                                        store.load();
+                                    }
+                                    else{
+                                        Ext.Msg.alert('Errore', action.result ? action.result.message : 'Nessuna Risposta');
+                                        var store = AdvaSoftLogin.app.getStore("Utenti");
+                                        store.load();
+                                    }
+
+                                }
+                            });
+                        } else {
+                            Ext.Msg.alert( "Errore!", "Compila tutti i campi" );
+                        }
+                    }
+                }]
+            }]
+        }).show();
+
+    },
+
+    onDeleteUtente: function(view, rowIndex, colIndex, item, e, record, row) {
+
+
+    },
+
+    onNewUtente: function(view, rowIndex, colIndex, item, e, record, row) {
+
+        var cognome='';
+        var nome='';
+        var username='';
+        var password='';
+        var email='';
+        var permessi='[{\'sezione\' : \'aziende\',\'permessi\' : 7,\'dettagli\' : 7}, {\'sezione\' : \'utenti\',\'permessi\' : 7,\'dettagli\' : 7},{\'sezione\' : \'documenti\',\'permessi\' : 7,\'dettagli\' : 7}]';
+        var image ='data:image/png;base64,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';
+        var profilo='';
+
+        var states = Ext.create('Ext.data.Store', {
+            fields: ['abbr', 'name'],
+            data : [
+                {"abbr":"Amministratore", "name":"Amministratore"},
+                {"abbr":"Utente", "name":"Utente"}
+            ]
+        });
+
+        Ext.create('Ext.window.Window', {
+            title: 'Inserisci Nuovo Utente',
+            height: 520,
+            width: "60%",
+            layout: 'fit',
+            items: [{  // the form is an item of the window
+                id: 'admin-win',
+                width: 2000,
+                height: 2000,
+                //iconCls: 'icon-grid',
+                animCollapse: false,
+                constrainHeader: true,
+                xtype: 'form',
+                bodyPadding: 15,
+                url: '/users/inserisciUtente',
+                method: 'POST',
+                disableCaching: false,
+                items: [{
+
+                    xtype: 'textfield',
+                    fieldLabel : 'Cognome',
+                    value        : cognome,
+                    name        : 'cognome',
+                    allowBlank: false
+                },
+                    {
+                        xtype: 'textfield',
+                        fieldLabel : 'Nome',
+                        value        : nome,
+                        name        : 'nome',
+                        allowBlank: false
+                    },
+                    {
+                        xtype: 'textfield',
+                        fieldLabel : 'Username',
+                        value        : username,
+                        name        : 'username',
+                        allowBlank: false
+                    },
+                    {
+                        xtype: 'textfield',
+                        fieldLabel : 'Password',
+                        value        : password,
+                        name        : 'password',
+                        allowBlank: false
+                    },
+                    {
+                        xtype: 'textfield',
+                        fieldLabel : 'E-mail',
+                        value        : email,
+                        name        : 'email',
+                        allowBlank: false
+                    },
+                    {
+                        xtype: 'datefield',
+                        fieldLabel : 'Data Scadenza',
+                        value        : scadenza,
+                        name        : 'scadenza',
+                        minDate: new Date(),
+                        allowBlank: false
+                    },
+                    {
+                        xtype: 'textfield',
+                        fieldLabel : 'Permessi',
+                        value        : permessi,
+                        name        : 'permessi',
+                        allowBlank: false
+                    },
+                    {
+                        xtype: 'textfield',
+                        fieldLabel : 'Immagine',
+                        value        : image,
+                        name        : 'image',
+                        allowBlank: false
+                    },
+                    {
+                        xtype: 'combobox',
+                        fieldLabel : 'Profilo',
+                        displayField: 'name',
+                        valueField: 'abbr',
+                        renderTo: Ext.getBody(),
+                        name        : 'profilo',
+                        id :'profilo',
+                        store: states,
+                        allowBlank: false
+                    }],
+                buttons: [{
+                    text: 'Salva',
+                    handler: function(button, e) {
+                        var form = this.up('form').getForm();
+                        if (form.isValid()) {
+                            form.submit({
+                                success: function(form, action) {
+                                    Ext.Msg.alert('Successo', 'Inserimento Effettuato');
+                                    var store = AdvaSoftLogin.app.getStore("Utenti");
+                                    store.load();
+                                    button.up('.window').close();
+                                },
+                                failure: function(form, action) {
+                                    if(action.result){
+                                        Ext.Msg.alert('Successo', 'Inserimento Effettuato');
+                                        var store = AdvaSoftLogin.app.getStore("Utenti");
+                                        store.load();
+                                        button.up('.window').close();
+                                    }
+                                }
+                            });
+                        } else {
+                            Ext.Msg.alert( "Errore!", "Compila tutti i campi" );
+                        }
+                    }
+                }]
+            }]
+        }).show();
+
+        var form = this.up('form').getForm();
+        var scadenza=form.findField('profilo').getValue();
 
     },
 

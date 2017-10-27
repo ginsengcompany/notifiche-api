@@ -41,7 +41,7 @@ Ext.define('AdvaSoftLogin.view.sessioni.Sessioni', {
             columns: [
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'accessToken',
+                    dataIndex: 'access_token',
                     text: 'Token',
                     flex: 1
                 },
@@ -60,13 +60,13 @@ Ext.define('AdvaSoftLogin.view.sessioni.Sessioni', {
                 {
                     xtype: 'gridcolumn',
                     width: 60,
-                    dataIndex: 'sessionType',
+                    dataIndex: 'session_type',
                     text: 'Tipo'
                 },
                 {
                     xtype: 'datecolumn',
                     width: 150,
-                    dataIndex: 'expiresToken',
+                    dataIndex: 'expires_token',
                     text: 'Scadenza',
                     format: 'd-m-Y H:i:s'
                 },
@@ -75,8 +75,9 @@ Ext.define('AdvaSoftLogin.view.sessioni.Sessioni', {
                     renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
                         var returnValue = "Attiva";
                         //var durataSessione = 3600000; <- in millisecondi
-                        var dataScadenza = Ext.Date.add(new Date(), Ext.Date.SECOND, -3600);
-                        if(record.get('expiresToken').getTime() < dataScadenza.getTime()){
+                        var dataScadenza = new Date();
+                        record.data.expires_token = new Date();
+                        if(record.data.expires_token.getTime() < dataScadenza.getTime()){
                             metaData.tdCls = 'red-font';
                             returnValue = "Scaduta";
                         }

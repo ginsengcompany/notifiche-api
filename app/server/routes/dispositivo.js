@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var dispositivo = require('../controllers/DispositivoMnController');
+var ObjectID = require('mongodb').ObjectID;
+var gcm = require('node-gcm');
 
 router.get('/', function (req, res, next) {
     var filtro = {};
@@ -19,8 +21,10 @@ router.get('/', function (req, res, next) {
 });
 
 router.put('/attivazione/:id', function (req, res, next) {
-    var id = req.params._id;
-    var myquery = { "primaryKey": id };
+    var token = req.headers.data;
+    var id = req.params.id;
+    var objectId = new ObjectID(id);
+    var myquery  = {"_id":objectId};
 
     dispositivo.getAttivo(myquery ,function (error, device) {
         if (error) {
@@ -39,6 +43,29 @@ router.put('/attivazione/:id', function (req, res, next) {
                     else{
                         response1 = device;
                         res.json(response1);
+
+                        var message = new gcm.Message();
+
+                        message.addData('operazione', 'disattivaDispositivo');
+                        message.addNotification('title', 'Dispositivo Disattivato');
+                        message.addNotification('vibrate', 1);
+                        message.addNotification('sound', 'default');
+                        message.addNotification('icon', 'ic_launcher');
+                        message.addNotification('body', 'Sei stato Disattivato');
+
+
+                        var regTokens = [token];
+
+                        var sender = new gcm.Sender('AIzaSyDwcsLvG_bwNMNbPidfAEQe2rdDbD0tFto');
+
+                        sender.send(message, regTokens, function (err, response) {
+                            if(err) {
+                                console.error(err);
+                            } else {
+                                console.log(response);
+                            }
+                        });
+
                     }
 
                 });
@@ -53,6 +80,28 @@ router.put('/attivazione/:id', function (req, res, next) {
                     else{
                         response2 = device;
                         res.json(response2);
+
+                        var message = new gcm.Message();
+
+                        message.addData('operazione', 'attivaDispositivo');
+                        message.addNotification('title', 'Dispositivo Attivato');
+                        message.addNotification('vibrate', 1);
+                        message.addNotification('sound', 'default');
+                        message.addNotification('icon', 'ic_launcher');
+                        message.addNotification('body', 'Sei stato Attivato');
+
+
+                        var regTokens = [token];
+
+                        var sender = new gcm.Sender('AIzaSyDwcsLvG_bwNMNbPidfAEQe2rdDbD0tFto');
+
+                        sender.send(message, regTokens, function (err, response) {
+                            if(err) {
+                                console.error(err);
+                            } else {
+                                console.log(response);
+                            }
+                        });
                     }
 
                 });

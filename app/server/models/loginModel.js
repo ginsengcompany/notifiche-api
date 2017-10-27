@@ -21,9 +21,32 @@ loginmodel.inserisciSession = function(session, callback){
     collection_pub_session.insertOne(session,callback);
 };
 
+loginmodel.inserisciDispositivo = function(session, callback){
+    var collection_pub_session = loginmodel.databaseMongo().collection('pub_dispositivi');
+    collection_pub_session.insertOne(session,callback);
+};
+
+loginmodel.getSessione = function (filtro, callback) {
+    var collection_pub_utenti = loginmodel.databaseMongo().collection('pub_session');
+    collection_pub_utenti.find(filtro).toArray(function (err, login) {
+        if (err) return callback(err);
+        callback(null, login);
+    });
+};
+
+loginmodel.aggiornaSessione = function (myquery, newvalue ,callback) {
+    var collection_pub_session = loginmodel.databaseMongo().collection('pub_session');
+    collection_pub_session.updateOne(myquery, newvalue ,function (errore, lista) {
+        if (errore)
+            return callback(errore);
+        else
+            callback(null, lista);
+    });
+};
+
 loginmodel.getValidate = function(callback){
     var collection_pub_session = loginmodel.databaseMongo().collection('pub_session');
-    collection_pub_session.find().sort({'_id': -1}).limit(1).toArray(function (err, login) {
+    collection_pub_session.find().toArray(function (err, login) {
         if (err)
             return callback(err);
         if (login != null) {

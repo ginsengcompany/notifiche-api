@@ -22,7 +22,7 @@ Ext.define('AdvaSoftLogin.view.utenti.Utenti', {
         'AdvaSoftLogin.view.utenti.UtentiViewController',
         'Ext.grid.Panel',
         'Ext.view.Table',
-        'Ext.grid.column.Action'
+        'Ext.grid.column.Action',
     ],
 
     controller: 'utentiutenti',
@@ -38,6 +38,19 @@ Ext.define('AdvaSoftLogin.view.utenti.Utenti', {
             xtype: 'gridpanel',
             title: 'Lista Utenti',
             store: 'Utenti',
+            dockedItems: [{
+                xtype: 'toolbar',
+                dock: 'bottom',
+                items: [ {
+                    xtype: 'tbfill'
+                }, {
+                    xtype: 'button',
+                    text: 'Inserisci',
+                    handler: 'onNewUtente',
+                    iconCls: 'fa fa-plus',
+                    margin: 5
+                }]
+            }],
             columns: [
                 {
                     xtype: 'gridcolumn',
@@ -71,6 +84,17 @@ Ext.define('AdvaSoftLogin.view.utenti.Utenti', {
                         {
                             handler: 'onEditUtente',
                             iconCls: 'fa fa-pencil'
+                        }
+                    ]
+                },
+                {
+                    xtype: 'actioncolumn',
+                    width: 60,
+                    align: 'center',
+                    items: [
+                        {
+                            handler: 'onDeleteUtente',
+                            iconCls: 'fa fa-trash-o'
                         }
                     ]
                 }

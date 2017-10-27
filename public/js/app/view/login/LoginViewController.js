@@ -92,10 +92,10 @@ Ext.define('AdvaSoftLogin.view.login.LoginViewController', {
                 var obj = Ext.decode(response.responseText);
                 var link = "";
                 if( redirectUri !== undefined){
-                    link = redirectUri + '?authToken=' + oauth.access_token + "&username=" + obj.username;
+                    link = redirectUri + '?authToken=' + oauth.access_token + "&username=" + refs.txtUsername.getValue();
                 }
                 else{
-                    link = 'index.html?authToken=' + oauth.access_token + "&username=" + obj.username;
+                    link = 'index.html?authToken=' + oauth.access_token + "&username=" + refs.txtUsername.getValue();
                 }
                 //console.log(link);
                 location.href = link;
