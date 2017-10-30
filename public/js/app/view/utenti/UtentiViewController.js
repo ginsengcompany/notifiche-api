@@ -112,8 +112,10 @@ Ext.define('AdvaSoftLogin.view.utenti.UtentiViewController', {
     },
 
     onDeleteUtente: function(view, rowIndex, colIndex, item, e, record, row) {
-
-
+        var store = view.getStore();
+        var record = view.getStore().getAt(rowIndex);
+        store.remove(record);
+        store.sync();
     },
 
     onNewUtente: function(view, rowIndex, colIndex, item, e, record, row) {

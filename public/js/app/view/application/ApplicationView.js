@@ -126,7 +126,7 @@ Ext.define('AdvaSoftLogin.view.application.ApplicationView', {
                 },
                 {
                     xtype: 'tbtext',
-                    text: me.utente.cognome + ' ' + me.utente.nome,
+                    text: me.utente.lastname + ' ' + me.utente.firstname,
                     cls: 'top-user-name'
                 }
             ]

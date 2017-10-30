@@ -40,3 +40,13 @@ usersmodel.inserisciUtente = function(utente, callback){
     var collection_pub_utenti = usersmodel.databaseMongo().collection('pub_utenti');
     collection_pub_utenti.insertOne(utente,callback);
 };
+
+usersmodel.deleteUser = function (filtro, callback) {
+    var collection_pub_utenti = usersmodel.databaseMongo().collection('pub_utenti');
+    collection_pub_utenti.deleteOne(filtro,function (errore, utente) {
+        if (errore)
+            return callback(errore);
+        else
+            callback(null, utente);
+    });
+};

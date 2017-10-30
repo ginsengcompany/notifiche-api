@@ -45,7 +45,7 @@ Ext.define('AdvaSoftLogin.view.utenti.Utenti', {
                     xtype: 'tbfill'
                 }, {
                     xtype: 'button',
-                    text: 'Inserisci',
+                    text: 'Inserisci Utente',
                     handler: 'onNewUtente',
                     iconCls: 'fa fa-plus',
                     margin: 5

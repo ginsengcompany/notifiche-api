@@ -100,5 +100,22 @@ router.post('/inserisciUtente', function (req, res, next) {
 
 });
 
+router.delete('/:id', function (req, res, next) {
+    var id = req.params.id;
+    var objectId = new ObjectID(id);
+    var filtro  = {"_id":objectId};
+    var response = {};
+    users.deleteUser(filtro ,function (error, utente) {
+        if (error) {
+            response = {"error": true, "status": 401};
+            res.json(response);
+        }
+        else{
+            response = utente;
+            res.json(response);
+        }
+    });
+});
+
 
 module.exports = router;

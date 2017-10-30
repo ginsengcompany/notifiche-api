@@ -16,3 +16,7 @@ users.updateUtente = function (myquery, newvalue, callback) {
 users.inserisciUtente = function (utente, callback) {
     model.inserisciUtente(utente, callback);
 };
+
+users.deleteUser = function (filtro, callback) {
+    model.deleteUser(filtro, callback);
+};
